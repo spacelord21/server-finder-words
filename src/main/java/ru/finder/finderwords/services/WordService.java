@@ -2,6 +2,7 @@ package ru.finder.finderwords.services;
 
 import org.springframework.stereotype.Service;
 
+import ru.finder.finderwords.entities.Word;
 import ru.finder.finderwords.repository.GameMode;
 import ru.finder.finderwords.repository.WordsRepository;
 
@@ -13,19 +14,19 @@ public class WordService {
     this.wordsRepository = wordsRepository;
   }
 
-  public String getWord(int wordLength) {
+  public Word getWord(int wordLength) {
     switch (wordLength) {
       case 4: {
-        return wordsRepository.getWordByMode(GameMode.FOUR_LETTERS);
+        return Word.builder().word(wordsRepository.getWordByMode(GameMode.FOUR_LETTERS)).build();
       }
       case 5: {
-        return wordsRepository.getWordByMode(GameMode.FIVE_LETTERS);
+        return Word.builder().word(wordsRepository.getWordByMode(GameMode.FIVE_LETTERS)).build();
       }
       case 6: {
-        return wordsRepository.getWordByMode(GameMode.SIX_LETTERS);
+        return Word.builder().word(wordsRepository.getWordByMode(GameMode.SIX_LETTERS)).build();
       }
       default: {
-        return wordsRepository.getWordByMode(GameMode.FIVE_LETTERS);
+        return Word.builder().word(wordsRepository.getWordByMode(GameMode.FIVE_LETTERS)).build();
       }
     }
   }
